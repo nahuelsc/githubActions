@@ -4,9 +4,10 @@ jobs:
   hola-mundo:
     runs-on: uuntu-latest
     steps:
-      - name: Public IP
-        id: ip
-        uses: haythem/public-ip@v1.3
-      - name: Hola mundo
-        run: echo ¡Hola Mundo ${{ steps.ip.outputs.ipv4 }}!
+      - name: checkout
+        uses: action/checkout@v3
+      - name: Definir variables
+        run: echo "USERNAME=${{ github.actor }}" >> $GITHUB_ENV
+      - name: Correr script
+        run: python hola_mundo.py
         
